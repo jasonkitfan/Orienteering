@@ -44,6 +44,9 @@
 		D659D3ED2A3B2681009DFB11 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659D3EC2A3B2681009DFB11 /* HomeView.swift */; };
 		D659D3EE2A3B2681009DFB11 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659D3EC2A3B2681009DFB11 /* HomeView.swift */; };
 		D659D3EF2A3B2681009DFB11 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659D3EC2A3B2681009DFB11 /* HomeView.swift */; };
+		D6DE53112A3B4DC4003D008C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */; };
+		D6DE53122A3B4DC4003D008C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */; };
+		D6DE53132A3B4DC4003D008C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,7 @@
 		D659D3E42A3B2584009DFB11 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		D659D3E82A3B2596009DFB11 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 		D659D3EC2A3B2681009DFB11 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 		D653F2952A39D5A5005CFA42 /* Orienteering */ = {
 			isa = PBXGroup;
 			children = (
+				D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */,
 				D659D3CF2A3AD3B8009DFB11 /* Firebase */,
 				D653F2C02A39D60F005CFA42 /* View */,
 				D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */,
@@ -315,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D653F29E2A39D5A6005CFA42 /* Preview Assets.xcassets in Resources */,
+				D6DE53112A3B4DC4003D008C /* GoogleService-Info.plist in Resources */,
 				D653F29B2A39D5A6005CFA42 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6DE53122A3B4DC4003D008C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6DE53132A3B4DC4003D008C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,4 +67,5 @@ struct FirebaseAuthManager {
             return false
         }
     }
+    
 }

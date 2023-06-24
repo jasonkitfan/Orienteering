@@ -16,6 +16,19 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView(frame: .zero)
         mapView.showsUserLocation = true // Enable showing the user's location on the map
         
+        let userTrackingButton = MKUserTrackingButton(mapView: mapView)
+        userTrackingButton.layer.backgroundColor = UIColor.white.cgColor
+        userTrackingButton.layer.borderColor = UIColor.gray.cgColor
+        userTrackingButton.layer.borderWidth = 1.0
+        userTrackingButton.layer.cornerRadius = 5.0
+        userTrackingButton.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(userTrackingButton)
+        
+        NSLayoutConstraint.activate([
+            userTrackingButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12),
+            userTrackingButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -12)
+        ])
+        
         // Create and add two additional annotations to the map
         let annotation1 = MKPointAnnotation()
         annotation1.coordinate = CLLocationCoordinate2D(latitude: 22.31430, longitude: 114.2237)
@@ -26,6 +39,9 @@ struct MapView: UIViewRepresentable {
         annotation2.title = "Check Point 2"
         
         mapView.addAnnotations([annotation1, annotation2])
+        
+        // Set the map's tracking mode to follow the user's location and heading
+        mapView.setUserTrackingMode(.followWithHeading, animated: true)
         
         return mapView
     }

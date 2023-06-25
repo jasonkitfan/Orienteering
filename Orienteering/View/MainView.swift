@@ -44,8 +44,8 @@ struct MainView: View {
             // Camera tab
             CameraView(selectedTab: $selectedTab)
                 .tabItem {
-                    Image(systemName: "camera.fill")
-                    Text("Camera")
+                    Image(systemName: "qrcode")
+                    Text("QR code")
                 }
                 .tag(3)
             

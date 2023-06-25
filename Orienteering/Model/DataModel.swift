@@ -7,15 +7,21 @@
 
 import Foundation
 
-struct CheckpointItem: Identifiable {
+struct CheckpointInfo: Identifiable {
     let id = UUID()
     let title: String
     let description: String
-    let hasImage: Bool
+    let point: Int
+    let format: String
+    let activated: Bool
+    let answer: String?
+    let questionSet: [[String: Any]]?
+    let targetBreed: String?
 }
 
 struct CheckpointLocation {
     let title: String
     let latitude: Double
     let longitude: Double
+    let point: Int
 }

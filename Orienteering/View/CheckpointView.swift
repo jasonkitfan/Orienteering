@@ -9,92 +9,61 @@ import SwiftUI
 
 struct CheckpointView: View {
     @State private var expandedItem: UUID?
-    @State private var checkpointItems = [CheckpointItem]()
+    @State var checkpoints: [CheckpointInfo] = []
 
-    
-    private func getCheckpoints() {
+    private func getCheckpoints(completion: @escaping () -> Void) {
         let firestoreManager = FirestoreManager()
         firestoreManager.getCheckpointData { result in
             switch result {
             case .success(let data):
                 // Use the retrieved document data here
-                print("checkpoint data: \(data["checkpoints"]!)")
+                if let locations = data["checkpoints"] as? [[String: Any]] {
+                    var checkpointLocations: [CheckpointInfo] = []
+                    for checkpointData in locations {
+                        if let title = checkpointData["title"] as? String,
+                           let description = checkpointData["description"] as? String,
+                           let format = checkpointData["format"] as? String,
+                           let activated = checkpointData["activated"] as? Bool,
+                           let point = checkpointData["point"] as? Int {
+                            var answer: String?
+                            var questionSet: [[String: Any]]? = []
+                            var targetBreed: String?
+                            if(activated == true){
+                                if(format == "integer_input_field"){
+                                    answer = checkpointData["answer"] as? String
+                                } else if(format == "quiz"){
+                                    questionSet = (checkpointData["question_set"] as? [[String: Any]])!
+                                } else if(format == "image_recognition"){
+                                    targetBreed = checkpointData["target_breed"] as? String
+                                }
+                            }
+                            let checkpoint = CheckpointInfo(title: title, description: description, point: point, format: format, activated: activated, answer: answer, questionSet: questionSet, targetBreed: targetBreed)
+//                            print(checkpoint)
+                            checkpointLocations.append(checkpoint)
+                        } else {
+                            print("Error: Checkpoint data is missing or invalid")
+                        }
+                    }
+                    self.checkpoints = checkpointLocations
+//                    print("final checkpoint: \(checkpoints)")
+                    completion() // Call the completion handler once the data is retrieved
+                } else {
+                    print("Checkpoints not found in data")
+                }
             case .failure(let error):
                 print(error)
             }
         }
     }
-    
-    let items = [
-        CheckpointItem(title: "Item 1", description: "Description for item 1", hasImage: true),
-        CheckpointItem(title: "Item 2", description: "Description for item 2", hasImage: false),
-        CheckpointItem(title: "Item 3", description: "Description for item 3", hasImage: false),
-        CheckpointItem(title: "Item 4", description: "Description for item 4", hasImage: true),
-    ]
 
     var body: some View {
-        VStack {
-            List(items) { item in
-                switch item.hasImage {
-                case true:
-                    ImageItemView(item: item, expandedItem: $expandedItem)
-                case false:
-                    TextItemView(item: item, expandedItem: $expandedItem)
-                }
-            }
-        }.onAppear{
-            getCheckpoints()
-        }
-    }
-}
+        List(checkpoints, id: \.id) { checkpoint in
+            CheckpointRowInfo(item: checkpoint, expandedItem: $expandedItem)
+            }.onAppear{
+            getCheckpoints {
+                for checkpoint in checkpoints {
+//                    print("check point view: \(checkpoint)")
 
-struct TextItemView: View {
-    let item: CheckpointItem
-    @Binding var expandedItem: UUID?
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(item.title)
-                .font(.headline)
-            if expandedItem == item.id {
-                Text(item.description)
-            }
-        }
-        .padding()
-        .onTapGesture {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                if expandedItem == item.id {
-                    expandedItem = nil
-                } else {
-                    expandedItem = item.id
-                }
-            }
-        }
-    }
-}
-
-struct ImageItemView: View {
-    let item: CheckpointItem
-    @Binding var expandedItem: UUID?
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(item.title)
-                .font(.headline)
-            if expandedItem == item.id {
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
-                Text(item.description)
-            }
-        }
-        .padding()
-        .onTapGesture {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                if expandedItem == item.id {
-                    expandedItem = nil
-                } else {
-                    expandedItem = item.id
                 }
             }
         }

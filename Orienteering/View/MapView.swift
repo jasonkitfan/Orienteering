@@ -25,8 +25,9 @@ struct MapView: UIViewRepresentable {
                         if let title = checkpointData["title"] as? String,
                            let location = checkpointData["location"] as? [String: Any],
                            let latitude = location["lat"] as? Double,
-                           let longitude = location["long"] as? Double {
-                            let checkpoint = CheckpointLocation(title: title, latitude: latitude, longitude: longitude)
+                           let longitude = location["long"] as? Double,
+                           let point = checkpointData["point"] as? Int {
+                            let checkpoint = CheckpointLocation(title: title, latitude: latitude, longitude: longitude, point: point)
                             print(checkpoint)
                             checkpointLocations.append(checkpoint)
                         } else {
@@ -87,7 +88,7 @@ struct MapView: UIViewRepresentable {
             for checkpoint in checkpoints {
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = CLLocationCoordinate2D(latitude: checkpoint.latitude, longitude: checkpoint.longitude)
-                annotation.title = checkpoint.title
+                annotation.title = "\(checkpoint.title) (\(checkpoint.point))"
                 mapView.addAnnotation(annotation)
             }
         }

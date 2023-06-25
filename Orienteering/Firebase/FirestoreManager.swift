@@ -15,22 +15,81 @@ class FirestoreManager {
     
     // check if the qr code exist
     func eventExists(atPath path: String, completion: @escaping (Bool) -> Void) {
-        let documentRef = db.collection("event").document(path)
+        let qrCode = path.split(separator: "_")
         
-        documentRef.getDocument { (document, error) in
-            if let error = error {
-                print("Error getting document: \(error)")
-                completion(false)
-            } else if let document = document, document.exists {
-                // Document exists, print its data
-                print("Document data: \(document.data() ?? [:])")
-                self.addCheckPoint(eventCode: path, checkPointData: document.data()!["check_point"] as! [Dictionary<String, Any>])
-                completion(true)
-            } else {
-                // Document does not exist
-                completion(false)
+        print("checking qr code: \(qrCode)")
+        
+        // activate the event
+        if(qrCode[1] == "event"){
+            
+            print("activating event")
+            
+            let documentRef = db.collection("event").document(String(qrCode[0]))
+            
+            documentRef.getDocument { (document, error) in
+                if let error = error {
+                    print("Error getting document: \(error)")
+                    completion(false)
+                } else if let document = document, document.exists {
+                    // Document exists, print its data
+                    // print("Document data: \(document.data() ?? [:])")
+                    self.addCheckPoint(eventCode: String(qrCode[0]), checkPointData: document.data()!["check_point"] as! [Dictionary<String, Any>])
+                    completion(true)
+                } else {
+                    // Document does not exist
+                    completion(false)
+                }
+            }
+        } else if (qrCode[1] == "checkpoint") {
+            print("activating checkpoint")
+            
+            let collectionRef = db.collection("participant")
+            let uid = Firebase.Auth.auth().currentUser!.uid
+            print(uid)
+            print(qrCode[0])
+            let query = collectionRef
+                .whereField("event_code", isEqualTo: qrCode[0])
+                .whereField("uid", isEqualTo: uid)
+            query.getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching documents: \(error)")
+                    completion(false)
+                } else {
+                    if let document = snapshot?.documents.first {
+                        print("try updating checkpoint")
+                        collectionRef
+                            .document(document.documentID)
+                            .collection("checkpoints")
+                            .whereField("title", isEqualTo: qrCode[2])
+                            .getDocuments() { (snapshot, error) in
+                                if let error = error {
+                                    print("Error fetching checkpoint document: \(error)")
+                                    completion(false)
+                                } else if let document = snapshot?.documents.first {
+                                    document.reference.updateData([
+                                        "activated": true
+                                    ]) { (error) in
+                                        if let error = error {
+                                            print("Error updating checkpoint: \(error)")
+                                            completion(false)
+                                        } else {
+                                            print("Checkpoint activated")
+                                            completion(true)
+                                        }
+                                    }
+                                } else {
+                                    print("No matching checkpoints found")
+                                    completion(false)
+                                }
+                            }
+                    } else {
+                        print("No documents found")
+                        completion(false)
+                    }
+                }
             }
         }
+        
     }
     
     // add the checkpoints

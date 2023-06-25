@@ -16,6 +16,9 @@
 		D604D8D52A47DC9900179F8D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D42A47DC9900179F8D /* DataModel.swift */; };
 		D604D8D62A47DC9900179F8D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D42A47DC9900179F8D /* DataModel.swift */; };
 		D604D8D72A47DC9900179F8D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D42A47DC9900179F8D /* DataModel.swift */; };
+		D604D8D92A48189100179F8D /* CheckpointRowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */; };
+		D604D8DA2A48189100179F8D /* CheckpointRowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */; };
+		D604D8DB2A48189100179F8D /* CheckpointRowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */; };
 		D653F2972A39D5A5005CFA42 /* OrienteeringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */; };
 		D653F2992A39D5A5005CFA42 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F2982A39D5A5005CFA42 /* RegistrationView.swift */; };
 		D653F29B2A39D5A6005CFA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D653F29A2A39D5A6005CFA42 /* Assets.xcassets */; };
@@ -79,6 +82,7 @@
 		D604D8CB2A46C57500179F8D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		D604D8CF2A46E79800179F8D /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		D604D8D42A47DC9900179F8D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointRowInfo.swift; sourceTree = "<group>"; };
 		D653F2932A39D5A5005CFA42 /* Orienteering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orienteering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrienteeringApp.swift; sourceTree = "<group>"; };
 		D653F2982A39D5A5005CFA42 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 			children = (
 				D653F2C62A39E6F5005CFA42 /* SocialMediaLogin.swift */,
 				D604D8CF2A46E79800179F8D /* ScannerView.swift */,
+				D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 				D604D8D02A46E79800179F8D /* ScannerView.swift in Sources */,
 				D659D3E52A3B2584009DFB11 /* CameraView.swift in Sources */,
 				D659D3ED2A3B2681009DFB11 /* HomeView.swift in Sources */,
+				D604D8D92A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
 				D653F2C72A39E6F5005CFA42 /* SocialMediaLogin.swift in Sources */,
 				D604D8CC2A46C57500179F8D /* FirestoreManager.swift in Sources */,
 				D653F2992A39D5A5005CFA42 /* RegistrationView.swift in Sources */,
@@ -392,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D604D8DA2A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
 				D659D3E22A3B2572009DFB11 /* CheckpointView.swift in Sources */,
 				D604D8D62A47DC9900179F8D /* DataModel.swift in Sources */,
 				D653F2C32A39DAB6005CFA42 /* LoginView.swift in Sources */,
@@ -419,6 +426,7 @@
 				D604D8D22A46E79800179F8D /* ScannerView.swift in Sources */,
 				D659D3E72A3B2584009DFB11 /* CameraView.swift in Sources */,
 				D659D3EF2A3B2681009DFB11 /* HomeView.swift in Sources */,
+				D604D8DB2A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
 				D653F2C92A39E6F5005CFA42 /* SocialMediaLogin.swift in Sources */,
 				D604D8CE2A46C57500179F8D /* FirestoreManager.swift in Sources */,
 				D653F2B22A39D5A7005CFA42 /* OrienteeringUITests.swift in Sources */,

@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-struct CheckpointItem: Identifiable {
-    let id = UUID()
-    let title: String
-    let description: String
-    let hasImage: Bool
-}
-
 struct CheckpointView: View {
     @State private var expandedItem: UUID?
     @State private var checkpointItems = [CheckpointItem]()
@@ -25,7 +18,7 @@ struct CheckpointView: View {
             switch result {
             case .success(let data):
                 // Use the retrieved document data here
-                print("Document data: \(data)")
+                print("checkpoint data: \(data["checkpoints"]!)")
             case .failure(let error):
                 print(error)
             }

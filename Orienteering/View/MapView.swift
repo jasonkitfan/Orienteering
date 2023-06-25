@@ -11,11 +11,44 @@ import CoreLocation
 
 struct MapView: UIViewRepresentable {
     @StateObject private var locationViewModel = LocationViewModel()
-    
+    @State var checkpoints: [CheckpointLocation] = []
+
+    private func getCheckpoints(completion: @escaping () -> Void) {
+        let firestoreManager = FirestoreManager()
+        firestoreManager.getCheckpointData { result in
+            switch result {
+            case .success(let data):
+                // Use the retrieved document data here
+                if let locations = data["checkpoints"] as? [[String: Any]] {
+                    var checkpointLocations: [CheckpointLocation] = []
+                    for checkpointData in locations {
+                        if let title = checkpointData["title"] as? String,
+                           let location = checkpointData["location"] as? [String: Any],
+                           let latitude = location["lat"] as? Double,
+                           let longitude = location["long"] as? Double {
+                            let checkpoint = CheckpointLocation(title: title, latitude: latitude, longitude: longitude)
+                            print(checkpoint)
+                            checkpointLocations.append(checkpoint)
+                        } else {
+                            print("Error: Checkpoint data is missing or invalid")
+                        }
+                    }
+                    self.checkpoints = checkpointLocations
+                    print("final checkpoint: \(checkpoints)")
+                    completion() // Call the completion handler once the data is retrieved
+                } else {
+                    print("Checkpoints not found in data")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
         mapView.showsUserLocation = true // Enable showing the user's location on the map
-        
+
         let userTrackingButton = MKUserTrackingButton(mapView: mapView)
         userTrackingButton.layer.backgroundColor = UIColor.white.cgColor
         userTrackingButton.layer.borderColor = UIColor.gray.cgColor
@@ -23,38 +56,40 @@ struct MapView: UIViewRepresentable {
         userTrackingButton.layer.cornerRadius = 5.0
         userTrackingButton.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(userTrackingButton)
-        
+
         NSLayoutConstraint.activate([
             userTrackingButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12),
             userTrackingButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
-        
-        // Create and add two additional annotations to the map
-        let annotation1 = MKPointAnnotation()
-        annotation1.coordinate = CLLocationCoordinate2D(latitude: 22.31430, longitude: 114.2237)
-        annotation1.title = "Check Point 1"
-        
-        let annotation2 = MKPointAnnotation()
-        annotation2.coordinate = CLLocationCoordinate2D(latitude: 22.3231, longitude: 114.2071)
-        annotation2.title = "Check Point 2"
-        
-        mapView.addAnnotations([annotation1, annotation2])
-        
+
         // Set the map's tracking mode to follow the user's location and heading
         mapView.setUserTrackingMode(.followWithHeading, animated: true)
-        
+
         return mapView
     }
-    
+
     func updateUIView(_ mapView: MKMapView, context: Context) {
         guard let coordinate = locationViewModel.location?.coordinate else { return }
-        
+
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: coordinate, span: span)
-        
+
         if !locationViewModel.initialLocationSet {
             mapView.setRegion(region, animated: true)
             locationViewModel.initialLocationSet = true
+        }
+
+        getCheckpoints {
+            // Remove existing annotations
+            mapView.removeAnnotations(mapView.annotations)
+            
+            // Add new annotations for each checkpoint
+            for checkpoint in checkpoints {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: checkpoint.latitude, longitude: checkpoint.longitude)
+                annotation.title = checkpoint.title
+                mapView.addAnnotation(annotation)
+            }
         }
     }
 }

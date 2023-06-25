@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab = 0
+    @State private var id = 0
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -22,6 +23,10 @@ struct MainView: View {
             
             // Map tab
             MapView()
+                .onAppear {
+                    print("map appear")
+                    id += 1
+                }
                 .tabItem {
                     Image(systemName: "map.fill")
                     Text("Map")
@@ -55,6 +60,7 @@ struct MainView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle(Text("Orienteering"))
         .navigationBarTitleDisplayMode(.inline)
+        .id(selectedTab)
     }
 }
 

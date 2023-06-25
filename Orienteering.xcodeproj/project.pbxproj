@@ -13,6 +13,9 @@
 		D604D8D02A46E79800179F8D /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8CF2A46E79800179F8D /* ScannerView.swift */; };
 		D604D8D12A46E79800179F8D /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8CF2A46E79800179F8D /* ScannerView.swift */; };
 		D604D8D22A46E79800179F8D /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8CF2A46E79800179F8D /* ScannerView.swift */; };
+		D604D8D52A47DC9900179F8D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D42A47DC9900179F8D /* DataModel.swift */; };
+		D604D8D62A47DC9900179F8D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D42A47DC9900179F8D /* DataModel.swift */; };
+		D604D8D72A47DC9900179F8D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D42A47DC9900179F8D /* DataModel.swift */; };
 		D653F2972A39D5A5005CFA42 /* OrienteeringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */; };
 		D653F2992A39D5A5005CFA42 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F2982A39D5A5005CFA42 /* RegistrationView.swift */; };
 		D653F29B2A39D5A6005CFA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D653F29A2A39D5A6005CFA42 /* Assets.xcassets */; };
@@ -75,6 +78,7 @@
 /* Begin PBXFileReference section */
 		D604D8CB2A46C57500179F8D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		D604D8CF2A46E79800179F8D /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		D604D8D42A47DC9900179F8D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		D653F2932A39D5A5005CFA42 /* Orienteering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orienteering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrienteeringApp.swift; sourceTree = "<group>"; };
 		D653F2982A39D5A5005CFA42 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -125,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D604D8D32A47DC7C00179F8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D604D8D42A47DC9900179F8D /* DataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D653F28A2A39D5A5005CFA42 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +160,7 @@
 		D653F2952A39D5A5005CFA42 /* Orienteering */ = {
 			isa = PBXGroup;
 			children = (
+				D604D8D32A47DC7C00179F8D /* Model */,
 				D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */,
 				D659D3CF2A3AD3B8009DFB11 /* Firebase */,
 				D653F2C02A39D60F005CFA42 /* View */,
@@ -370,6 +383,7 @@
 				D653F2992A39D5A5005CFA42 /* RegistrationView.swift in Sources */,
 				D659D3D92A3AEC90009DFB11 /* MainView.swift in Sources */,
 				D653F2972A39D5A5005CFA42 /* OrienteeringApp.swift in Sources */,
+				D604D8D52A47DC9900179F8D /* DataModel.swift in Sources */,
 				D659D3D12A3AD3E4009DFB11 /* FirebaseAuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D659D3E22A3B2572009DFB11 /* CheckpointView.swift in Sources */,
+				D604D8D62A47DC9900179F8D /* DataModel.swift in Sources */,
 				D653F2C32A39DAB6005CFA42 /* LoginView.swift in Sources */,
 				D659D3DE2A3B255A009DFB11 /* MapView.swift in Sources */,
 				D659D3EE2A3B2681009DFB11 /* HomeView.swift in Sources */,
@@ -409,6 +424,7 @@
 				D653F2B22A39D5A7005CFA42 /* OrienteeringUITests.swift in Sources */,
 				D659D3DB2A3AEC90009DFB11 /* MainView.swift in Sources */,
 				D653F2B42A39D5A7005CFA42 /* OrienteeringUITestsLaunchTests.swift in Sources */,
+				D604D8D72A47DC9900179F8D /* DataModel.swift in Sources */,
 				D659D3D32A3AD3E4009DFB11 /* FirebaseAuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

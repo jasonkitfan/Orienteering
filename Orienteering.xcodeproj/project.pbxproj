@@ -19,6 +19,24 @@
 		D604D8D92A48189100179F8D /* CheckpointRowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */; };
 		D604D8DA2A48189100179F8D /* CheckpointRowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */; };
 		D604D8DB2A48189100179F8D /* CheckpointRowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */; };
+		D604D8DD2A48719100179F8D /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8DC2A48719100179F8D /* NumberInputView.swift */; };
+		D604D8DE2A48719100179F8D /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8DC2A48719100179F8D /* NumberInputView.swift */; };
+		D604D8DF2A48719100179F8D /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8DC2A48719100179F8D /* NumberInputView.swift */; };
+		D604D8E12A48726C00179F8D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8E02A48726C00179F8D /* ImagePicker.swift */; };
+		D604D8E22A48726C00179F8D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8E02A48726C00179F8D /* ImagePicker.swift */; };
+		D604D8E32A48726C00179F8D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8E02A48726C00179F8D /* ImagePicker.swift */; };
+		D604D8E52A48737D00179F8D /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8E42A48737D00179F8D /* ImageView.swift */; };
+		D604D8E62A48737D00179F8D /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8E42A48737D00179F8D /* ImageView.swift */; };
+		D604D8E72A48737D00179F8D /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8E42A48737D00179F8D /* ImageView.swift */; };
+		D604D8ED2A48780200179F8D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8EC2A48780200179F8D /* ErrorView.swift */; };
+		D604D8EE2A48780200179F8D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8EC2A48780200179F8D /* ErrorView.swift */; };
+		D604D8EF2A48780200179F8D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8EC2A48780200179F8D /* ErrorView.swift */; };
+		D604D8F12A48782D00179F8D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8F02A48782D00179F8D /* ActivityView.swift */; };
+		D604D8F22A48782D00179F8D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8F02A48782D00179F8D /* ActivityView.swift */; };
+		D604D8F32A48782D00179F8D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8F02A48782D00179F8D /* ActivityView.swift */; };
+		D604D8F52A4878DE00179F8D /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8F42A4878DE00179F8D /* QuizView.swift */; };
+		D604D8F62A4878DE00179F8D /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8F42A4878DE00179F8D /* QuizView.swift */; };
+		D604D8F72A4878DE00179F8D /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604D8F42A4878DE00179F8D /* QuizView.swift */; };
 		D653F2972A39D5A5005CFA42 /* OrienteeringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */; };
 		D653F2992A39D5A5005CFA42 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F2982A39D5A5005CFA42 /* RegistrationView.swift */; };
 		D653F29B2A39D5A6005CFA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D653F29A2A39D5A6005CFA42 /* Assets.xcassets */; };
@@ -83,6 +101,12 @@
 		D604D8CF2A46E79800179F8D /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		D604D8D42A47DC9900179F8D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointRowInfo.swift; sourceTree = "<group>"; };
+		D604D8DC2A48719100179F8D /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
+		D604D8E02A48726C00179F8D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D604D8E42A48737D00179F8D /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		D604D8EC2A48780200179F8D /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		D604D8F02A48782D00179F8D /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		D604D8F42A4878DE00179F8D /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		D653F2932A39D5A5005CFA42 /* Orienteering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orienteering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D653F2962A39D5A5005CFA42 /* OrienteeringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrienteeringApp.swift; sourceTree = "<group>"; };
 		D653F2982A39D5A5005CFA42 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -137,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D604D8D42A47DC9900179F8D /* DataModel.swift */,
+				D604D8E02A48726C00179F8D /* ImagePicker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +247,11 @@
 				D653F2C62A39E6F5005CFA42 /* SocialMediaLogin.swift */,
 				D604D8CF2A46E79800179F8D /* ScannerView.swift */,
 				D604D8D82A48189100179F8D /* CheckpointRowInfo.swift */,
+				D604D8DC2A48719100179F8D /* NumberInputView.swift */,
+				D604D8E42A48737D00179F8D /* ImageView.swift */,
+				D604D8EC2A48780200179F8D /* ErrorView.swift */,
+				D604D8F02A48782D00179F8D /* ActivityView.swift */,
+				D604D8F42A4878DE00179F8D /* QuizView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -378,13 +408,19 @@
 			files = (
 				D659D3E92A3B2596009DFB11 /* SupportView.swift in Sources */,
 				D659D3DD2A3B255A009DFB11 /* MapView.swift in Sources */,
+				D604D8ED2A48780200179F8D /* ErrorView.swift in Sources */,
 				D653F2C22A39DAB6005CFA42 /* LoginView.swift in Sources */,
+				D604D8E12A48726C00179F8D /* ImagePicker.swift in Sources */,
 				D659D3E12A3B2572009DFB11 /* CheckpointView.swift in Sources */,
+				D604D8DD2A48719100179F8D /* NumberInputView.swift in Sources */,
+				D604D8E52A48737D00179F8D /* ImageView.swift in Sources */,
 				D604D8D02A46E79800179F8D /* ScannerView.swift in Sources */,
 				D659D3E52A3B2584009DFB11 /* CameraView.swift in Sources */,
 				D659D3ED2A3B2681009DFB11 /* HomeView.swift in Sources */,
+				D604D8F52A4878DE00179F8D /* QuizView.swift in Sources */,
 				D604D8D92A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
 				D653F2C72A39E6F5005CFA42 /* SocialMediaLogin.swift in Sources */,
+				D604D8F12A48782D00179F8D /* ActivityView.swift in Sources */,
 				D604D8CC2A46C57500179F8D /* FirestoreManager.swift in Sources */,
 				D653F2992A39D5A5005CFA42 /* RegistrationView.swift in Sources */,
 				D659D3D92A3AEC90009DFB11 /* MainView.swift in Sources */,
@@ -399,17 +435,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				D604D8DA2A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
+				D604D8DE2A48719100179F8D /* NumberInputView.swift in Sources */,
 				D659D3E22A3B2572009DFB11 /* CheckpointView.swift in Sources */,
+				D604D8E62A48737D00179F8D /* ImageView.swift in Sources */,
 				D604D8D62A47DC9900179F8D /* DataModel.swift in Sources */,
 				D653F2C32A39DAB6005CFA42 /* LoginView.swift in Sources */,
 				D659D3DE2A3B255A009DFB11 /* MapView.swift in Sources */,
+				D604D8EE2A48780200179F8D /* ErrorView.swift in Sources */,
 				D659D3EE2A3B2681009DFB11 /* HomeView.swift in Sources */,
 				D653F2A82A39D5A7005CFA42 /* OrienteeringTests.swift in Sources */,
 				D659D3D22A3AD3E4009DFB11 /* FirebaseAuthManager.swift in Sources */,
 				D659D3DA2A3AEC90009DFB11 /* MainView.swift in Sources */,
+				D604D8F22A48782D00179F8D /* ActivityView.swift in Sources */,
 				D659D3EA2A3B2596009DFB11 /* SupportView.swift in Sources */,
 				D653F2C82A39E6F5005CFA42 /* SocialMediaLogin.swift in Sources */,
 				D604D8D12A46E79800179F8D /* ScannerView.swift in Sources */,
+				D604D8E22A48726C00179F8D /* ImagePicker.swift in Sources */,
+				D604D8F62A4878DE00179F8D /* QuizView.swift in Sources */,
 				D659D3E62A3B2584009DFB11 /* CameraView.swift in Sources */,
 				D604D8CD2A46C57500179F8D /* FirestoreManager.swift in Sources */,
 			);
@@ -421,13 +463,19 @@
 			files = (
 				D659D3EB2A3B2596009DFB11 /* SupportView.swift in Sources */,
 				D659D3DF2A3B255A009DFB11 /* MapView.swift in Sources */,
+				D604D8EF2A48780200179F8D /* ErrorView.swift in Sources */,
 				D653F2C42A39DAB6005CFA42 /* LoginView.swift in Sources */,
+				D604D8E32A48726C00179F8D /* ImagePicker.swift in Sources */,
 				D659D3E32A3B2572009DFB11 /* CheckpointView.swift in Sources */,
+				D604D8DF2A48719100179F8D /* NumberInputView.swift in Sources */,
+				D604D8E72A48737D00179F8D /* ImageView.swift in Sources */,
 				D604D8D22A46E79800179F8D /* ScannerView.swift in Sources */,
 				D659D3E72A3B2584009DFB11 /* CameraView.swift in Sources */,
 				D659D3EF2A3B2681009DFB11 /* HomeView.swift in Sources */,
+				D604D8F72A4878DE00179F8D /* QuizView.swift in Sources */,
 				D604D8DB2A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
 				D653F2C92A39E6F5005CFA42 /* SocialMediaLogin.swift in Sources */,
+				D604D8F32A48782D00179F8D /* ActivityView.swift in Sources */,
 				D604D8CE2A46C57500179F8D /* FirestoreManager.swift in Sources */,
 				D653F2B22A39D5A7005CFA42 /* OrienteeringUITests.swift in Sources */,
 				D659D3DB2A3AEC90009DFB11 /* MainView.swift in Sources */,

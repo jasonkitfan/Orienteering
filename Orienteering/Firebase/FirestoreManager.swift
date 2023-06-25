@@ -183,4 +183,77 @@ class FirestoreManager {
         }
     }
     
+    func updateScore(ActivityTitle title: String, Score score: Int){
+        let uid = Firebase.Auth.auth().currentUser?.uid
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        let query = db.collection("participant")
+                      .whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startOfDay))
+                      .whereField("date", isLessThan: Timestamp(date: endOfDay))
+                      .whereField("uid", isEqualTo: uid!)
+        
+        query.getDocuments { (querySnapshot, error) in
+             if let error = error {
+                 print("Error updating score: \(error.localizedDescription)")
+                 return
+             }
+             
+             guard let querySnapshot = querySnapshot else {
+                 print("No documents found for the query")
+                 return
+             }
+             
+            if let document = querySnapshot.documents.first {
+                let documentID = document.documentID
+                
+                // Retrieve the current score from the document
+                var currentScore = document.data()["current_score"] as? Int ?? 0
+                
+                // Add the new score to the current score
+                currentScore += score
+                
+                // Update the score field in the document
+                document.reference.updateData(["current_score": currentScore, "last_update": Date()]) { (error) in
+                    if let error = error {
+                        print("Error updating score in document \(documentID): \(error.localizedDescription)")
+                    } else {
+                        print("Score updated successfully in document \(documentID)")
+                    }
+                }
+                
+                // Update the data in the checkpoints subcollection document
+                self.db.collection("participant")
+                    .document(documentID)
+                    .collection("checkpoints")
+                    .whereField("title", isEqualTo: title)
+                    .getDocuments() { (querySnapshot, error) in
+                        if let error = error {
+                            print("Error retrieving checkpoints document: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        guard let querySnapshot = querySnapshot, !querySnapshot.isEmpty else {
+                            print("No checkpoints document found")
+                            return
+                        }
+                        
+                        let document = querySnapshot.documents[0]
+                        let documentID = document.documentID
+                        
+                        document.reference.updateData([
+                            "completed": true
+                        ]) { (error) in
+                            if let error = error {
+                                print("Error updating checkpoints document \(documentID): \(error.localizedDescription)")
+                            } else {
+                                print("Checkpoints document updated successfully")
+                            }
+                        }
+                    }
+            } else {
+                print("No documents found for the query")
+            }
+         }
+    }
+    
 }

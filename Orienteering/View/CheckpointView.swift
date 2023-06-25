@@ -24,20 +24,21 @@ struct CheckpointView: View {
                            let description = checkpointData["description"] as? String,
                            let format = checkpointData["format"] as? String,
                            let activated = checkpointData["activated"] as? Bool,
+                           let completed = checkpointData["completed"] as? Bool,
                            let point = checkpointData["point"] as? Int {
-                            var answer: String?
+                            var answer: Int?
                             var questionSet: [[String: Any]]? = []
                             var targetBreed: String?
                             if(activated == true){
                                 if(format == "integer_input_field"){
-                                    answer = checkpointData["answer"] as? String
+                                    answer = (checkpointData["answer"] as? Int)!
                                 } else if(format == "quiz"){
                                     questionSet = (checkpointData["question_set"] as? [[String: Any]])!
                                 } else if(format == "image_recognition"){
                                     targetBreed = checkpointData["target_breed"] as? String
                                 }
                             }
-                            let checkpoint = CheckpointInfo(title: title, description: description, point: point, format: format, activated: activated, answer: answer, questionSet: questionSet, targetBreed: targetBreed)
+                            let checkpoint = CheckpointInfo(title: title, description: description, point: point, format: format, activated: activated, answer: answer, questionSet: questionSet, targetBreed: targetBreed, completed: completed)
 //                            print(checkpoint)
                             checkpointLocations.append(checkpoint)
                         } else {
@@ -61,10 +62,10 @@ struct CheckpointView: View {
             CheckpointRowInfo(item: checkpoint, expandedItem: $expandedItem)
             }.onAppear{
             getCheckpoints {
-                for checkpoint in checkpoints {
+//                for checkpoint in checkpoints {
 //                    print("check point view: \(checkpoint)")
-
-                }
+//
+//                }
             }
         }
     }

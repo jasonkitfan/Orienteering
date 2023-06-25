@@ -14,9 +14,10 @@ struct CheckpointInfo: Identifiable {
     let point: Int
     let format: String
     let activated: Bool
-    let answer: String?
+    let answer: Int?
     let questionSet: [[String: Any]]?
     let targetBreed: String?
+    let completed: Bool?
 }
 
 struct CheckpointLocation {

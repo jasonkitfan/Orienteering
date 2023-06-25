@@ -32,16 +32,16 @@ struct CheckpointRowInfo: View {
                     HStack {
                         Spacer() // push the button to the right
                         
-                        if(item.activated){
+                        if(item.activated && item.completed != true){
                             NavigationLink(destination: ActivityView(item: item)) {
                             }.opacity(0.0)
                         }
                         
-                        Text("Start")
+                        Text(item.completed != true ? "Start": "Completed")
                             .foregroundColor(Color.white)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(item.activated ? Color.blue : Color.gray)
+                            .background(item.completed != true ? Color.blue : Color.gray)
                             .cornerRadius(10)
                     }
                 }
@@ -54,20 +54,6 @@ struct CheckpointRowInfo: View {
         )
         .padding()
         .contentShape(Rectangle())
-    }
-}
-
-struct ActivityView: View {
-    let item: CheckpointInfo
-    
-    var body: some View {
-        VStack {
-            Text(item.title)
-                .font(.title)
-                .padding()
-            Text(item.description)
-                .padding()
-        }
     }
 }
 

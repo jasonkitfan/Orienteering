@@ -8,10 +8,22 @@
 import SwiftUI
 
 struct SocialMediaLogin: View {
+    @State var isSuccess: Bool = false
+    let auth = FirebaseAuthManager()
+    
     var body: some View {
+        
+        let home = NavigationLink(destination: MainView(), isActive: $isSuccess) {
+            EmptyView()
+        }
+        
         HStack(spacing: 30) {
             MediaLoginButton(media: "google") {
                 print("handle google login")
+                Task {
+                        isSuccess = await auth.loginWithGoogle()
+                        print(isSuccess)
+                    }
             }
             MediaLoginButton(media: "apple") {
                 print("handle apple login")
@@ -21,6 +33,7 @@ struct SocialMediaLogin: View {
             }
         }
         .padding()
+        .background(home)
     }
 }
 

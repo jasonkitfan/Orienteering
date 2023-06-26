@@ -57,13 +57,15 @@ struct FirebaseAuthManager {
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
                     // Handle sign-in error
-                    completion(error.localizedDescription, false)
+                    print(error)
+                    completion("fail", false)
                 } else {
                     // Sign-in successful
-                    completion("", true)
+                    completion("success", true)
                 }
             }
-        }
+    }
+    
     func isUserLogin() -> Bool{
         if(Auth.auth().currentUser != nil){
             return true

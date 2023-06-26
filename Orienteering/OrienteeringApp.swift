@@ -20,7 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct OrienteeringApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+
     let auth = FirebaseAuthManager()
     
     var body: some Scene {

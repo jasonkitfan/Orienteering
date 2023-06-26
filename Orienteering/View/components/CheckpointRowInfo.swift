@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckpointRowInfo: View {
-    let item: CheckpointInfo
+    @State var item: CheckpointInfo
     @Binding var expandedItem: UUID?
     
     var body: some View {
@@ -33,7 +33,7 @@ struct CheckpointRowInfo: View {
                         Spacer() // push the button to the right
                         
                         if(item.activated && item.completed != true){
-                            NavigationLink(destination: ActivityView(item: item)) {
+                            NavigationLink(destination: ActivityView(item: $item)) {
                             }.opacity(0.0)
                         }
                         

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NumberInputView: View {
-    let item: CheckpointInfo
+    @Binding var item: CheckpointInfo
     @Environment(\.presentationMode) var presentationMode
     @State private var number: Int = 0
     
@@ -31,7 +31,7 @@ struct NumberInputView: View {
                 print("Your answer is \(number)")
                 let manager = FirestoreManager()
                 manager.updateScore(ActivityTitle: item.title, Score: number == item.answer ? item.point: 0)
-          
+                item.completed = true
                 self.presentationMode.wrappedValue.dismiss() // Dismiss the view
             }) {
                 Text("Submit")

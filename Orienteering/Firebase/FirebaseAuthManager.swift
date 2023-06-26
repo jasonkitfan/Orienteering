@@ -7,6 +7,7 @@
 
 import FirebaseAuth
 import FirebaseFirestore
+import UIKit
 
 struct FirebaseAuthManager {
     // email and password login
@@ -65,6 +66,19 @@ struct FirebaseAuthManager {
             return true
         } else {
             return false
+        }
+    }
+    
+    func logoutUser() {
+        do {
+            try Auth.auth().signOut()
+            print("User logged out successfully")
+            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                exit(0)
+            }
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
     }
     

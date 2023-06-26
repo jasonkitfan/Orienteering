@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImageView: View {
-    let item: CheckpointInfo
+    @Binding var item: CheckpointInfo
     @State private var image: UIImage?
     @State private var isShowingImagePicker = false
     @Environment(\.presentationMode) var presentationMode
@@ -127,6 +127,7 @@ struct ImageView: View {
         DispatchQueue.main.async {
             isSubmitting = false
             refreshId = UUID() // Update the refresh identifier
+            item.completed = true
             self.presentationMode.wrappedValue.dismiss()
         }
     }

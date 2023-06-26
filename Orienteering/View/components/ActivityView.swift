@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ActivityView: View {
-    let item: CheckpointInfo
+    @Binding var item: CheckpointInfo
     
     var body: some View {
         switch item.format {
         case "quiz":
-            return AnyView(QuizView(item: item))
+            return AnyView(QuizView(item: $item))
         case "image_recognition":
-            return AnyView(ImageView(item: item))
+            return AnyView(ImageView(item: $item))
         case "integer_input_field":
-            return AnyView(NumberInputView(item: item))
+            return AnyView(NumberInputView(item: $item))
         default:
             return AnyView(ErrorView())
         }

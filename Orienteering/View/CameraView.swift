@@ -10,7 +10,6 @@ import AVFoundation
 
 struct CameraView: View {
     @Binding var selectedTab: Int
-
     @State private var scannedCode: String?
     @State private var cameraAuthorizationStatus: AVAuthorizationStatus = .notDetermined
     @State private var message = "Scanning QR code"
@@ -55,7 +54,7 @@ struct CameraView: View {
                                         print("Document does not exist!")
                                     }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                            selectedTab = 2
+                                        selectedTab = 2
                                         scannedCode = nil
                                         message = "Checking QR code"
                                         }

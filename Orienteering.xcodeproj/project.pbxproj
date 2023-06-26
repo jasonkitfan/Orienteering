@@ -83,6 +83,9 @@
 		D6ABCC872A49444800A305D8 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABCC862A49444800A305D8 /* Secret.swift */; };
 		D6ABCC882A49444800A305D8 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABCC862A49444800A305D8 /* Secret.swift */; };
 		D6ABCC892A49444800A305D8 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABCC862A49444800A305D8 /* Secret.swift */; };
+		D6ABCC8F2A49869800A305D8 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABCC8E2A49869800A305D8 /* DrawerView.swift */; };
+		D6ABCC902A49869800A305D8 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABCC8E2A49869800A305D8 /* DrawerView.swift */; };
+		D6ABCC912A49869800A305D8 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABCC8E2A49869800A305D8 /* DrawerView.swift */; };
 		D6DE53112A3B4DC4003D008C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */; };
 		D6DE53122A3B4DC4003D008C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */; };
 		D6DE53132A3B4DC4003D008C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */; };
@@ -138,6 +141,7 @@
 		D659D3EC2A3B2681009DFB11 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D6ABCC822A49210E00A305D8 /* Zyla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zyla.swift; sourceTree = "<group>"; };
 		D6ABCC862A49444800A305D8 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		D6ABCC8E2A49869800A305D8 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		D6DE53102A3B4DC4003D008C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -266,6 +270,7 @@
 				D604D8EC2A48780200179F8D /* ErrorView.swift */,
 				D604D8F02A48782D00179F8D /* ActivityView.swift */,
 				D604D8F42A4878DE00179F8D /* QuizView.swift */,
+				D6ABCC8E2A49869800A305D8 /* DrawerView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				D6ABCC832A49210E00A305D8 /* Zyla.swift in Sources */,
 				D659D3E92A3B2596009DFB11 /* SupportView.swift in Sources */,
 				D659D3DD2A3B255A009DFB11 /* MapView.swift in Sources */,
+				D6ABCC8F2A49869800A305D8 /* DrawerView.swift in Sources */,
 				D604D8ED2A48780200179F8D /* ErrorView.swift in Sources */,
 				D653F2C22A39DAB6005CFA42 /* LoginView.swift in Sources */,
 				D604D8E12A48726C00179F8D /* ImagePicker.swift in Sources */,
@@ -455,6 +461,7 @@
 				D604D8DA2A48189100179F8D /* CheckpointRowInfo.swift in Sources */,
 				D604D8DE2A48719100179F8D /* NumberInputView.swift in Sources */,
 				D659D3E22A3B2572009DFB11 /* CheckpointView.swift in Sources */,
+				D6ABCC902A49869800A305D8 /* DrawerView.swift in Sources */,
 				D604D8E62A48737D00179F8D /* ImageView.swift in Sources */,
 				D604D8FA2A488DA800179F8D /* FirebaseStorage.swift in Sources */,
 				D6ABCC842A49210E00A305D8 /* Zyla.swift in Sources */,
@@ -485,6 +492,7 @@
 				D6ABCC852A49210E00A305D8 /* Zyla.swift in Sources */,
 				D659D3EB2A3B2596009DFB11 /* SupportView.swift in Sources */,
 				D659D3DF2A3B255A009DFB11 /* MapView.swift in Sources */,
+				D6ABCC912A49869800A305D8 /* DrawerView.swift in Sources */,
 				D604D8EF2A48780200179F8D /* ErrorView.swift in Sources */,
 				D653F2C42A39DAB6005CFA42 /* LoginView.swift in Sources */,
 				D604D8E32A48726C00179F8D /* ImagePicker.swift in Sources */,

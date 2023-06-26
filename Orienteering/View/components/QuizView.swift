@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuizView: View {
-    let item: CheckpointInfo
+    @Binding var item: CheckpointInfo
     @State private var currentQuestion = 0
     @State private var selectedAnswer: Bool?
     @State private var totalScore = 0
@@ -66,6 +66,7 @@ struct QuizView: View {
             print("current score: \(finalScore)")
             let manager = FirestoreManager()
             manager.updateScore(ActivityTitle: item.title, Score: finalScore)
+            item.completed = true
             presentationMode.wrappedValue.dismiss()
         }
     }

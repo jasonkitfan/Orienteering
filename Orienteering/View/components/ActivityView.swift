@@ -15,7 +15,7 @@ struct ActivityView: View {
         case "quiz":
             return AnyView(QuizView(item: item))
         case "image_recognition":
-            return AnyView(ImageView())
+            return AnyView(ImageView(item: item))
         case "integer_input_field":
             return AnyView(NumberInputView(item: item))
         default:

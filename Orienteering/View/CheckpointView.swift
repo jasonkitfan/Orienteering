@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CheckpointView: View {
     @State private var expandedItem: UUID?
@@ -35,7 +36,7 @@ struct CheckpointView: View {
                                 } else if(format == "quiz"){
                                     questionSet = (checkpointData["question_set"] as? [[String: Any]])!
                                 } else if(format == "image_recognition"){
-                                    targetBreed = checkpointData["target_breed"] as? String
+                                    targetBreed = checkpointData["targeted_breed"] as? String
                                 }
                             }
                             let checkpoint = CheckpointInfo(title: title, description: description, point: point, format: format, activated: activated, answer: answer, questionSet: questionSet, targetBreed: targetBreed, completed: completed)

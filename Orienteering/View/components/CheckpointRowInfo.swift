@@ -41,7 +41,7 @@ struct CheckpointRowInfo: View {
                             .foregroundColor(Color.white)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(item.completed != true ? Color.blue : Color.gray)
+                            .background(item.completed != true ? item.activated == true  ? Color.blue : Color.gray : Color.gray)
                             .cornerRadius(10)
                     }
                 }

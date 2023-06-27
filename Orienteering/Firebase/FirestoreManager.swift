@@ -13,50 +13,50 @@ class FirestoreManager {
     
     private let db = Firestore.firestore()
     
-    // check if the qr code exist
+    // Method to check if a QR code exists in the database and activate the corresponding event or checkpoint
     func eventExists(atPath path: String, completion: @escaping (Bool) -> Void) {
+        
         let qrCode = path.split(separator: "_")
         
-        print("checking qr code: \(qrCode)")
-        
-        // activate the event
         if(qrCode[1] == "event"){
+            // If the QR code is for an event, fetch the event document and call addCheckPoint method to add checkpoints
             
-            print("activating event")
-            
+            // Get reference to the event document
             let documentRef = db.collection("event").document(String(qrCode[0]))
             
+            // Fetch event document
             documentRef.getDocument { (document, error) in
                 if let error = error {
                     print("Error getting document: \(error)")
                     completion(false)
                 } else if let document = document, document.exists {
-                    // Document exists, print its data
-                    // print("Document data: \(document.data() ?? [:])")
+                    // If document exists and has data, call addCheckPoint method to add checkpoints for the event
                     self.addCheckPoint(eventCode: String(qrCode[0]), checkPointData: document.data()!["check_point"] as! [Dictionary<String, Any>])
                     completion(true)
                 } else {
-                    // Document does not exist
                     completion(false)
                 }
             }
         } else if (qrCode[1] == "checkpoint") {
-            print("activating checkpoint")
+            // If the QR code is for a checkpoint, fetch the participant document and update the activated field for the corresponding checkpoint
             
+            // Get reference to the participant collection
             let collectionRef = db.collection("participant")
             let uid = Firebase.Auth.auth().currentUser!.uid
-            print(uid)
-            print(qrCode[0])
+            
+            // Query for participant document that matches the event code and user ID
             let query = collectionRef
                 .whereField("event_code", isEqualTo: qrCode[0])
                 .whereField("uid", isEqualTo: uid)
+            
+            // Fetch participant document
             query.getDocuments { (snapshot, error) in
                 if let error = error {
                     print("Error fetching documents: \(error)")
                     completion(false)
                 } else {
                     if let document = snapshot?.documents.first {
-                        print("try updating checkpoint")
+                        // If document exists and has data, get reference to the checkpoints subcollection and update the activated field for the corresponding checkpoint
                         collectionRef
                             .document(document.documentID)
                             .collection("checkpoints")
@@ -73,7 +73,6 @@ class FirestoreManager {
                                             print("Error updating checkpoint: \(error)")
                                             completion(false)
                                         } else {
-                                            print("Checkpoint activated")
                                             completion(true)
                                         }
                                     }
@@ -89,16 +88,18 @@ class FirestoreManager {
                 }
             }
         }
-        
     }
     
-    // add the checkpoints
+    // Method to add new participant document with checkpoints to the database
     func addCheckPoint(eventCode code: String, checkPointData checkpoints: [Dictionary<String, Any>]) {
         let collectionRef = db.collection("participant")
         let uid = Firebase.Auth.auth().currentUser?.uid
+        
+        // Query for participant document that matches the event code and user ID
         let query = collectionRef.whereField("event_code", isEqualTo: code)
                                  .whereField("uid", isEqualTo: uid!)
         
+        // Fetch participant document
         query.getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error fetching documents: \(error)")
@@ -107,9 +108,12 @@ class FirestoreManager {
                     // Document already exists for this event and user
                     print("Document already exists")
                 } else {
-                    // Document does not exist, add new document
+                    // Document does not exist, add new document and checkpoints subcollection
+                    
+                    // Get reference to a new participant document
                     let documentRef = collectionRef.document()
                     
+                    // Set data for the document
                     let data: [String: Any] = [
                         "current_score": 0,
                         "event_code": code,
@@ -118,6 +122,7 @@ class FirestoreManager {
                         "last_update": Date()
                     ]
                     
+                    // Add the document to the collection
                     documentRef.setData(data) { error in
                         if let error = error {
                             print("Error adding document: \(error)")
@@ -127,6 +132,7 @@ class FirestoreManager {
                             // Add subcollection to new document
                             let subcollectionRef = documentRef.collection("checkpoints")
                             for checkpoint in checkpoints {
+                                // Add a new document for each checkpoint in the subcollection
                                 subcollectionRef.addDocument(data: checkpoint) { error in
                                     if let error = error {
                                         print("Error adding checkpoint document: \(error)")
@@ -142,43 +148,39 @@ class FirestoreManager {
         }
     }
     
+    // Method to get data for all checkpoints completed by the user for the current day
     func getCheckpointData(completion: @escaping (Result<[String: Any], Error>) -> Void) {
         let uid = Firebase.Auth.auth().currentUser?.uid
         let startOfDay = Calendar.current.startOfDay(for: Date())
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
-        let query = db.collection("participant")
-                      .whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startOfDay))
-                      .whereField("date", isLessThan: Timestamp(date: endOfDay))
-                      .whereField("uid", isEqualTo: uid!)
+        let collectionRef = db.collection("participant")
+        
+        // Query for participant documents that match the user ID and have a last_update field between the start and end of the current day
+        let query = collectionRef.whereField("uid", isEqualTo: uid!)
+                                 .whereField("last_update", isGreaterThan: startOfDay)
+                                 .whereField("last_update", isLessThan: endOfDay)
+        
+        // Fetch participant documents
         query.getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
-                return
-            }
-
-            guard let document = snapshot?.documents.first else {
-                let error = NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "Document not found"])
-                completion(.failure(error))
-                return
-            }
-
-            let participantData = document.data()
-            let checkpointRef = self.db.collection("participant").document(document.documentID).collection("checkpoints")
-            checkpointRef.getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-
-                var checkpointDataArray: [[String: Any]] = []
+            } else {
+                var checkpointData = [String: Any]()
                 for document in snapshot!.documents {
-                    let checkpointData = document.data()
-                    checkpointDataArray.append(checkpointData)
+                    for checkpoint in document.data()["checkpoints"] as! [[String: Any]] {
+                        if checkpoint["activated"] as! Bool {
+                            // If checkpoint is activated, add its points to the checkpointData dictionary
+                            let title = checkpoint["title"] as! String
+                            let points = checkpoint["points"] as! Int
+                            if let existingPoints = checkpointData[title] as? Int {
+                                checkpointData[title] = existingPoints + points
+                            } else {
+                                checkpointData[title] = points
+                            }
+                        }
+                    }
                 }
-
-                var data = participantData
-                data["checkpoints"] = checkpointDataArray
-                completion(.success(data))
+                completion(.success(checkpointData))
             }
         }
     }
@@ -255,5 +257,4 @@ class FirestoreManager {
             }
          }
     }
-    
 }

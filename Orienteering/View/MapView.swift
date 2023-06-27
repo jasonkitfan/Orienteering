@@ -13,6 +13,7 @@ struct MapView: UIViewRepresentable {
     @StateObject private var locationViewModel = LocationViewModel()
     @State var checkpoints: [CheckpointLocation] = []
 
+    // Function to retrieve the checkpoint data
     private func getCheckpoints(completion: @escaping () -> Void) {
         let firestoreManager = FirestoreManager()
         firestoreManager.getCheckpointData { result in
@@ -46,6 +47,7 @@ struct MapView: UIViewRepresentable {
         }
     }
 
+    // Function to create and configure the MKMapView
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
         mapView.showsUserLocation = true // Enable showing the user's location on the map
@@ -69,6 +71,7 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
 
+    // Function to update the MKMapView
     func updateUIView(_ mapView: MKMapView, context: Context) {
         guard let coordinate = locationViewModel.location?.coordinate else { return }
 
@@ -80,6 +83,7 @@ struct MapView: UIViewRepresentable {
             locationViewModel.initialLocationSet = true
         }
 
+        // Call the getCheckpoints function to retrieve the checkpoint data
         getCheckpoints {
             // Remove existing annotations
             mapView.removeAnnotations(mapView.annotations)
@@ -95,6 +99,7 @@ struct MapView: UIViewRepresentable {
     }
 }
 
+// LocationViewModel class to handle location updates
 class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation?

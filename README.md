@@ -18,6 +18,14 @@ The Orienteering App is an iOS application that helps users navigate through a s
 
    The camera is used to scan QR codes to activate the competitions or checkpoints
 
+## QR code string
+
+#### ActivateEvent 
+      yLwuTmZC5Ve9ee81V7tj_event
+   
+#### Activate Checkpoint
+      yLwuTmZC5Ve9ee81V7tj_checkpoint_count balloon
+
 ## How to play?
 
   1. scan the event qr code to activate the competition

@@ -33,7 +33,7 @@ class FirestoreManager {
                 } else if let document = document, document.exists {
                     // Document exists, print its data
                     // print("Document data: \(document.data() ?? [:])")
-                    self.addCheckPoint(eventCode: String(qrCode[0]), checkPointData: document.data()!["check_point"] as! [Dictionary<String, Any>])
+                    self.addCheckPoint(eventCode: String(qrCode[0]), checkPointData: document.data()!["checkpoint"] as! [Dictionary<String, Any>])
                     completion(true)
                 } else {
                     // Document does not exist

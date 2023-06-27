@@ -22,7 +22,6 @@ struct OrienteeringApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     let auth = FirebaseAuthManager()
-    let globaVars = GlobalVariables()
     
     var body: some Scene {
         WindowGroup {
@@ -33,7 +32,7 @@ struct OrienteeringApp: App {
                 else {
                     LoginView()
                 }
-            }.environmentObject(globaVars)
+            }
         }
     }
 }

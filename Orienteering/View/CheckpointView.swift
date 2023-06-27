@@ -68,7 +68,7 @@ struct CheckpointView: View {
 //
 //                }
             }
-            }
+        }
     }
 }
 

@@ -12,8 +12,8 @@ import CoreLocation
 struct MapView: UIViewRepresentable {
     @StateObject private var locationViewModel = LocationViewModel()
     @State var checkpoints: [CheckpointLocation] = []
+    @State var currentScore: Int = 0
 
-    // Function to retrieve the checkpoint data
     private func getCheckpoints(completion: @escaping () -> Void) {
         let firestoreManager = FirestoreManager()
         firestoreManager.getCheckpointData { result in
@@ -21,6 +21,7 @@ struct MapView: UIViewRepresentable {
             case .success(let data):
                 // Use the retrieved document data here
                 if let locations = data["checkpoints"] as? [[String: Any]] {
+                    currentScore = data["current_score"] as? Int ?? 0
                     var checkpointLocations: [CheckpointLocation] = []
                     for checkpointData in locations {
                         if let title = checkpointData["title"] as? String,
@@ -47,7 +48,6 @@ struct MapView: UIViewRepresentable {
         }
     }
 
-    // Function to create and configure the MKMapView
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
         mapView.showsUserLocation = true // Enable showing the user's location on the map
@@ -71,7 +71,6 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
 
-    // Function to update the MKMapView
     func updateUIView(_ mapView: MKMapView, context: Context) {
         guard let coordinate = locationViewModel.location?.coordinate else { return }
 
@@ -83,10 +82,9 @@ struct MapView: UIViewRepresentable {
             locationViewModel.initialLocationSet = true
         }
 
-        // Call the getCheckpoints function to retrieve the checkpoint data
         getCheckpoints {
             // Remove existing annotations
-            mapView.removeAnnotations(mapView.annotations)
+            // mapView.removeAnnotations(mapView.annotations)
             
             // Add new annotations for each checkpoint
             for checkpoint in checkpoints {
@@ -95,11 +93,24 @@ struct MapView: UIViewRepresentable {
                 annotation.title = "\(checkpoint.title) (\(checkpoint.point))"
                 mapView.addAnnotation(annotation)
             }
+            
+            // Add a custom annotation view with a label that displays the score
+            let annotationView = MKAnnotationView(annotation: nil, reuseIdentifier: "CustomAnnotation")
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+            label.text = "Current Score: \(currentScore)"
+            label.textColor = .white
+            label.backgroundColor = .black
+            label.textAlignment = .center
+            label.lineBreakMode = .byWordWrapping
+            label.numberOfLines = 0
+            label.sizeToFit() // Resize the label to fit the initial text
+            annotationView.addSubview(label)
+            annotationView.frame = CGRect(x: 12, y: 12, width: label.frame.width, height: label.frame.height)
+            mapView.addSubview(annotationView)
         }
     }
 }
 
-// LocationViewModel class to handle location updates
 class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation?

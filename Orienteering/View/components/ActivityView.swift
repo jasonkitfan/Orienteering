@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GameKit
 
 struct ActivityView: View {
     @Binding var item: CheckpointInfo

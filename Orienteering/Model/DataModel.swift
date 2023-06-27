@@ -26,3 +26,7 @@ struct CheckpointLocation {
     let longitude: Double
     let point: Int
 }
+
+class GlobalVariables: ObservableObject {
+    @Published var playerScore: Int = 0
+}

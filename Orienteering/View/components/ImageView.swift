@@ -78,7 +78,7 @@ struct ImageView: View {
             .background(Color.white)
             .cornerRadius(20)
             .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
-            .navigationBarTitle("Image View")
+            .navigationBarTitle("Breed: \(item.targetBreed ?? "unknown")")
             .id(refreshId) // Use the refresh identifier
         }
     }
